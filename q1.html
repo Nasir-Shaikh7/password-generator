@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="logic.js">
+  <script src="logic.js"></script>
   <title>Password Generator</title>
 </head>
 <body class="bg-gradient-to-r from-blue-500 to-green-500 h-screen flex items-center justify-center">
@@ -54,54 +54,5 @@
 
     <button id="generateButton" class="bg-green-500 text-white hover:bg-purple-500 hover:text-white px-4 py-2 rounded-md">Generate Password</button>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-  const generateButton = document.getElementById('generateButton');
-  const copyButton = document.getElementById('copyButton');
-  const passwordInput = document.getElementById('password');
-  const lengthInput = document.getElementById('length');
-  const uppercaseCheckbox = document.getElementById('uppercase');
-  const lowercaseCheckbox = document.getElementById('lowercase');
-  const numbersCheckbox = document.getElementById('numbers');
-  const symbolsCheckbox = document.getElementById('symbols');
-
-  generateButton.addEventListener('click', generatePassword);
-  copyButton.addEventListener('click', copyPassword);
-
-  function generatePassword() {
-    const length = parseInt(lengthInput.value);
-    const uppercase = uppercaseCheckbox.checked;
-    const lowercase = lowercaseCheckbox.checked;
-    const numbers = numbersCheckbox.checked;
-    const symbols = symbolsCheckbox.checked;
-
-    const password = generateRandomPassword(length, uppercase, lowercase, numbers, symbols);
-    passwordInput.value = password;
-  }
-
-  function copyPassword() {
-    passwordInput.select();
-    document.execCommand('copy');
-  }
-
-  function generateRandomPassword(length, uppercase, lowercase, numbers, symbols) {
-    let charset = '';
-    if (uppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    if (lowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
-    if (numbers) charset += '0123456789';
-    if (symbols) charset += '!@#$%^&*()_-+=<>?';
-
-    let password = '';
-    for (let i = 0; i < length; i++) {
-      const randomIndex = Math.floor(Math.random() * charset.length);
-      password += charset.charAt(randomIndex);
-    }
-
-    return password;
-  }
-});
-
-  </script>
 </body>
 </html>
